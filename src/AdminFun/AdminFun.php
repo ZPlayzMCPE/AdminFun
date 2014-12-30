@@ -23,7 +23,7 @@ use pocketmine\level\Explosion;
 use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\event\Listener;
-use pocketmine\event\entity\EntityMoveEvent;
+use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\inventory\InventoryOpenEvent;
 
@@ -392,8 +392,8 @@ class AdminFun extends PluginBase implements Listener{
 			!$this->invlock[$player->getName()];
 		}
 	}
-	public function onPlayerMove(EntityMoveEvent $event){
-		$player = $event->getEntity();
+	public function onPlayerMove(PlayerMoveEvent $event){
+		$player = $event->getPlayer();
 		if($this->frozen[$player->getName()]){
 			$player->sendMessage("You have been frozen!\nRe-Join server to escape from freeze!");
 			$event->setCancelled(true);

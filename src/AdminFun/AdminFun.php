@@ -28,15 +28,6 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\inventory\InventoryOpenEvent;
 
 class AdminFun extends PluginBase implements Listener{
-	public function onEnable(){
-		$this->getLogger()->info(" Loading...");
-		$this->frozen = array();
-		$this->invlock = array();
-	    $this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->getLogger()->info(TextFormat::GREEN." Loaded!");
-	}
-	public function onDisable(){
-	}
 	public function onCommand(Issuer $issuer,Command $cmd,$label,array $args){
 		$permission = "Sorry, you have no permission for this!";
 		if($issuer instanceof Player){
@@ -152,7 +143,7 @@ class AdminFun extends PluginBase implements Listener{
 				if(count($args) == 1){
 					$target = $args[0];
 					if($issuer->hasPermission("adminfun.fakejoin")){
-					    $this->getServer()->broadcastMessage("$args[0] joined the game");
+					    $this->getServer()->broadcastMessage("$args[0] has joined the game");
 					}else{
 						$issuer->sendMessage(TextFormat::RED."$permission");
 					}
@@ -226,7 +217,7 @@ class AdminFun extends PluginBase implements Listener{
 				    if($issuer->hasPermission("adminfun.freeze")){
 						if($target != null){
 							$this->frozen[$p];
-							$issuer->sendMessage("You freezed $args[0]!");
+							$issuer->sendMessage("You froze $args[0]!");
 							return true;
 						}else{
 							$issuer->sendMessage("Invalid player name!");
@@ -244,7 +235,7 @@ class AdminFun extends PluginBase implements Listener{
 						foreach($issuer->getLevel()->getPlayers() as $p){
                             $p->hidePlayer($issuer);
                         }
-						$issuer->sendMessage("You are hidden!");
+						$issuer->sendMessage("You are now hidden!");
 						return true;
 					}else{
 						$issuer->sendMessage(TextFormat::RED."$permission");
@@ -258,7 +249,7 @@ class AdminFun extends PluginBase implements Listener{
 					        foreach($target->getLevel()->getPlayers() as $p){
                                 $p->hidePlayer($target);
                             }
-							$issuer->sendMessage("You hide $args[0]");
+							$issuer->sendMessage("$args[0] is invisible!");
 						    $target->sendMessage("You have been hidden!");
 					    }else{
 						    $issuer->sendMessage("Invalid player name!");
@@ -287,7 +278,7 @@ class AdminFun extends PluginBase implements Listener{
 					        foreach($target->getLevel()->getPlayers() as $p){
                                 $p->showPlayer($target);
                             }
-							$issuer->sendMessage("You show $args[0]!");
+							$issuer->sendMessage("$args[0] is visible!");
 						    $target->sendMessage("You are now visible!");
 					    }else{
 						    $issuer->sendMessage("Invalid player name!");
@@ -395,7 +386,7 @@ class AdminFun extends PluginBase implements Listener{
 	public function onPlayerMove(PlayerMoveEvent $event){
 		$player = $event->getPlayer();
 		if($this->frozen[$player->getName()]){
-			$player->sendMessage("You have been frozen!\nRe-Join server to escape from freeze!");
+			$player->sendMessage("You have been frozen!\nRelog to become unfrozen!");
 			$event->setCancelled(true);
 		}
 	}

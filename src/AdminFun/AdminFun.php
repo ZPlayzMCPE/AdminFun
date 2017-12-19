@@ -407,4 +407,3 @@ class AdminFun extends PluginBase implements Listener{
 		}
 	}
 }
-?>

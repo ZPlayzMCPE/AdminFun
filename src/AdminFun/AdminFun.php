@@ -37,7 +37,7 @@ class AdminFun extends PluginBase implements Listener{
 	}
 	public function onDisable(){
 	}
-	public function onCommand(Issuer $issuer,Command $cmd,$label,array $args){
+	public function onCommand(Issuer $issuer, Command $cmd, string $label, array $args) : bool{
 		$permission = "Sorry, you have no permission for this!";
 		if($issuer instanceof Player){
 		switch($cmd->getName()){

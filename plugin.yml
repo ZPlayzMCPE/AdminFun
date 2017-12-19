@@ -1,10 +1,10 @@
 name: AdminFun
 main: AdminFun\AdminFun
-version: 1.0.0build1
-api: 1.7.0
+version: 2.0.0-B1
+api: [3.0.0-ALPHA7, 3.0.0-ALPHA8, 3.0.0-ALPHA9, 3.0.0-ALPHA10]
 author: hoyinm
 description: Let admins to have fun and troll players
-website: http://www.cybercube-hk.com
+website: Not showing.
 
 commands:
   announce:
